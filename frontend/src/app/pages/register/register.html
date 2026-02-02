@@ -1,0 +1,37 @@
+<div class="register-wrapper">
+  <mat-card class="register-card">
+    <h2>Register</h2>
+
+    <form (ngSubmit)="onRegister()" class="register-form">
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="name" name="name" required #nameInput="ngModel" />
+        <mat-error *ngIf="nameInput.invalid && nameInput.touched">Name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="email" name="email" required type="email" #emailInput="ngModel" />
+        <mat-error *ngIf="emailInput.invalid && emailInput.touched">Enter a valid email</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Password</mat-label>
+        <input matInput [(ngModel)]="password" name="password" required type="password" minlength="6" #passwordInput="ngModel" />
+        <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">Password must be at least 6 characters</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput [(ngModel)]="confirmPassword" name="confirmPassword" required type="password" #confirmInput="ngModel" />
+        <mat-error *ngIf="confirmInput.touched && confirmPassword !== password">Passwords do not match</mat-error>
+      </mat-form-field>
+
+      <div *ngIf="errorMsg" class="error-message">{{ errorMsg }}</div>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!isFormValid">
+        Register
+      </button>
+    </form>
+  </mat-card>
+</div>

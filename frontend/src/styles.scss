@@ -1,0 +1,48 @@
+@use '@angular/material' as mat;
+
+// Tailwind imports
+@import "tailwindcss";
+
+
+/* Small helper for SVG pointer-events */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Global background gradient animation */
+.bg-animated-gradient {
+  background: linear-gradient(120deg, rgba(14,165,233,0.09), rgba(99,102,241,0.06), rgba(14,165,233,0.04));
+  background-size: 300% 300%;
+  animation: gradientShift 12s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+body {
+  color-scheme: light;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+}
+
+html, body { height: 100%; }
+body { font-family: Roboto, "Helvetica Neue", sans-serif; }

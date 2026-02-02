@@ -1,0 +1,82 @@
+<app-navbar></app-navbar>
+
+<div class="login-wrapper">
+  <mat-card class="login-card">
+    <div class="form-container" [class.register-mode]="!isLoginMode">
+      <!-- Login Form -->
+      <form
+        *ngIf="isLoginMode"
+        (ngSubmit)="onLogin()"
+        #loginForm="ngForm"
+        class="form login-form"
+      >
+        <h2 class="title">Welcome Back</h2>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            [(ngModel)]="email"
+            name="email"
+            required
+            type="email"
+            #emailInput="ngModel"
+          />
+          <mat-error *ngIf="emailInput.invalid && emailInput.touched">
+            Please enter a valid email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [(ngModel)]="password"
+            name="password"
+            required
+            type="password"
+            minlength="6"
+            #passwordInput="ngModel"
+          />
+          <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">
+            Password must be at least 6 characters
+          </mat-error>
+        </mat-form-field>
+
+        <div *ngIf="errorMsg" class="error-message">
+          {{ errorMsg }}
+        </div>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!isFormValid"
+        >
+          Login
+        </button>
+
+        <button class="google-btn" type="button" (click)="onGoogleLogin()">
+          <img
+            src="assets/google-logo.png"
+            alt="Google Logo"
+            class="google-img"
+          />
+          Sign in with Google
+        </button>
+
+        <p class="toggle-text">
+          Don't have an account?
+          <span class="toggle-link" (click)="toggleMode(false)">Register</span>
+        </p>
+      </form>
+
+      <!-- Register Mockup (for animation only) -->
+      <div *ngIf="!isLoginMode" class="register-form">
+        <h2 class="title">Create Account</h2>
+        <p>Registration UI coming soon...</p>
+        <div class="btn" (click)="toggleMode(true)">Back to Login</div>
+      </div>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,31 @@
+<nav [class.scrolled]="scrolled" class="navbar">
+  <div class="container">
+    <!-- Logo -->
+    <a routerLink="/" class="logo">InclusiveFinance</a>
+
+    <!-- Desktop links -->
+    <ul class="nav-links">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+      <li><a routerLink="/services" routerLinkActive="active">Services</a></li>
+      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    </ul>
+
+    <!-- CTA / Button -->
+    <a routerLink="/login" class="btn-cta">Get Started</a>
+
+    <!-- Mobile hamburger -->
+    <button class="hamburger" (click)="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <ul class="mobile-menu" [class.open]="isMenuOpen">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="toggleMenu()">Home</a></li>
+    <li><a routerLink="/about" routerLinkActive="active" (click)="toggleMenu()">About</a></li>
+    <li><a routerLink="/services" routerLinkActive="active" (click)="toggleMenu()">Services</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active" (click)="toggleMenu()">Contact</a></li>
+    <li><a routerLink="/login" class="btn-cta" (click)="toggleMenu()">Get Started</a></li>
+  </ul>
+</nav>

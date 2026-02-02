@@ -1,0 +1,69 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: black;
+  min-height: 100vh;
+
+  .v-line, .h-line {
+    transform-origin: center;
+  }
+
+  .floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    filter: blur(3rem);
+  }
+
+  .underline {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    height: 2px;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 1.25rem 2.5rem;
+    font-size: 0.875rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.btn-primary {
+      background: white;
+      color: black;
+      position: relative;
+      overflow: hidden;
+
+      &:hover::before {
+        transform: translateX(0);
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: black;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 0;
+      }
+
+      span {
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    &.btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+
+      &:hover {
+        border-color: rgba(255,255,255,0.6);
+      }
+    }
+  }
+}

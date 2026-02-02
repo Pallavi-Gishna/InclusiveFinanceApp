@@ -1,0 +1,241 @@
+<div class="min-h-screen bg-white">
+<app-navbar></app-navbar>
+  
+  <!-- Navigation 
+  <nav 
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+    [ngClass]="scrolled 
+      ? 'bg-white/90 backdrop-blur-xl shadow-sm border-b border-gray-100' 
+      : 'bg-transparent'"
+  >
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      <div class="text-2xl font-light tracking-wider text-black">
+        <span class="font-extralight">INCLUSIVE</span>
+        <span class="font-semibold ml-2">FINANCE</span>
+      </div>
+
+      <div class="hidden md:flex gap-10">
+        <button (click)="scrollToSection('hero')" class="text-sm tracking-wider text-black hover:text-gray-600 transition-colors">
+          HOME
+        </button>
+        <button (click)="scrollToSection('features')" class="text-sm tracking-wider text-black hover:text-gray-600 transition-colors">
+          FEATURES
+        </button>
+        <button (click)="scrollToSection('contact')" class="text-sm tracking-wider text-black hover:text-gray-600 transition-colors">
+          CONTACT
+        </button>
+      </div>
+    </div>
+  </nav>
+-->
+  <!-- Hero Section -->
+ <section class="hero relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+  
+  <!-- GRID LINES -->
+  <div class="absolute inset-0 opacity-10 pointer-events-none">
+    <div *ngFor="let line of verticalLines; let i = index" class="v-line absolute top-0 bottom-0 w-px bg-white" [style.left.%]="i * 5"></div>
+    <div *ngFor="let line of horizontalLines; let i = index" class="h-line absolute left-0 right-0 h-px bg-white" [style.top.%]="i * 10"></div>
+  </div>
+
+  <!-- FLOATING SHAPES -->
+  <div class="floating-shape bg-white" style="width:500px;height:500px;top:5%;left:0%;"></div>
+  <div class="floating-shape bg-gray-500" style="width:400px;height:400px;top:60%;left:75%;"></div>
+  <div class="floating-shape bg-white" style="width:350px;height:350px;top:25%;left:85%;"></div>
+
+  <!-- MOUSE SPOTLIGHT -->
+  <div #spotlight class="absolute w-[800px] h-[800px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);"></div>
+
+  <!-- HERO CONTENT -->
+  <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+    
+    <div class="mb-8">
+      <h1 #heroTitle class="text-6xl md:text-8xl font-extralight text-white leading-tight tracking-tight">
+        Financial Freedom For Everyone
+      </h1>
+      <div class="underline h-px bg-gradient-to-r from-transparent via-white to-transparent mx-auto mt-4"></div>
+    </div>
+
+    <p class="text-gray-400 text-lg md:text-xl mb-16 font-light leading-relaxed">
+      Empowering individuals and businesses with intelligent, accessible financial tools 
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+      <button class="btn-primary" (click)="scrollToSection('features')">GET STARTED</button>
+      <button class="btn-secondary" (click)="scrollToSection('features')">EXPLORE FEATURES</button>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 cursor-pointer" #scrollText>
+      <span class="text-xs tracking-widest font-light">SCROLL</span>
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Decorative corner lines -->
+  <div class="absolute top-0 left-0 w-40 h-40 border-l border-t border-white/10"></div>
+  <div class="absolute bottom-0 right-0 w-40 h-40 border-r border-b border-white/10"></div>
+</section>
+
+
+  <!-- Features Section -->
+  <section id="features" class="py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center mb-20">
+        <span class="text-xs tracking-[0.3em] text-gray-400 uppercase font-light">Features</span>
+        <h2 class="text-4xl md:text-6xl font-extralight text-black mb-6 tracking-tight">
+          Powerful <span class="font-light">Capabilities</span>
+        </h2>
+        <p class="text-lg text-gray-500 max-w-2xl mx-auto font-light">
+          Everything you need to take control of your financial future
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div *ngFor="let feature of features" class="group bg-white p-10 border border-gray-100 hover:border-black transition-all duration-500">
+
+          <div class="w-16 h-16 bg-black rounded-none flex items-center justify-center text-white mb-8">
+            {{ feature.icon }}
+          </div>
+
+          <h3 class="text-xl font-light text-black mb-4 tracking-wide">
+            {{ feature.title }}
+          </h3>
+
+          <p class="text-gray-600 leading-relaxed font-light text-sm">
+            {{ feature.description }}
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-32 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center mb-20">
+        <span class="text-xs tracking-[0.3em] text-gray-400 uppercase font-light">Process</span>
+        <h2 class="text-4xl md:text-6xl font-extralight text-black mb-6 tracking-tight">
+          How It <span class="font-light">Works</span>
+        </h2>
+        <p class="text-lg text-gray-500 max-w-2xl mx-auto font-light">
+          Get started in three simple steps
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-12">
+        <div *ngFor="let step of steps; let i = index" class="relative">
+
+          <div class="bg-white p-10 border border-gray-200 hover:border-black transition-all duration-500">
+            <div class="w-20 h-20 bg-black border-2 border-black rounded-full flex items-center justify-center text-white text-3xl font-extralight mb-8">
+              {{ step.number }}
+            </div>
+
+            <h3 class="text-2xl font-light text-black mb-5 tracking-wide">
+              {{ step.title }}
+            </h3>
+
+            <p class="text-gray-600 leading-relaxed font-light">
+              {{ step.description }}
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center mb-20">
+        <span class="text-xs tracking-[0.3em] text-gray-400 uppercase font-light">Testimonials</span>
+        <h2 class="text-4xl md:text-6xl font-extralight text-black mb-6 tracking-tight">
+          Trusted by <span class="font-light">Thousands</span>
+        </h2>
+        <p class="text-lg text-gray-500 max-w-2xl mx-auto font-light">
+          See what our users have to say about their experience
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+        <div *ngFor="let t of testimonials" class="bg-gray-50 p-10 border border-gray-200 hover:border-black transition-all duration-500">
+
+          <div class="flex gap-1 mb-6">
+            <span *ngFor="let _ of [].constructor(t.rating)">★</span>
+          </div>
+
+          <p class="text-gray-700 text-lg mb-8 leading-relaxed font-light italic">
+            "{{ t.content }}"
+          </p>
+
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 bg-black rounded-full"></div>
+            <div>
+              <div class="font-light text-black tracking-wide">
+                {{ t.name }}
+              </div>
+              <div class="text-sm text-gray-500 font-light">
+                {{ t.role }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-black text-white py-20 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+
+        <div>
+          <div class="text-2xl font-light tracking-wider mb-6">
+            <span class="font-extralight">INCLUSIVE</span>
+            <span class="font-semibold ml-2">FINANCE</span>
+          </div>
+          <p class="text-gray-500 leading-relaxed font-light text-sm">
+            Empowering everyone with accessible, intelligent financial tools for a better tomorrow.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-light mb-6 text-sm tracking-widest text-gray-400">QUICK LINKS</h4>
+          <ul class="space-y-3">
+            <li><button (click)="scrollToSection('hero')" class="text-gray-400 hover:text-white">Home</button></li>
+            <li><button (click)="scrollToSection('features')" class="text-gray-400 hover:text-white">Features</button></li>
+            <li><button (click)="scrollToSection('contact')" class="text-gray-400 hover:text-white">Contact</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-light mb-6 text-sm tracking-widest text-gray-400">CONTACT US</h4>
+          <p class="text-gray-500 leading-relaxed font-light text-sm mb-3">
+            Have questions? We'd love to hear from you.
+          </p>
+          <p class="text-white font-light text-sm">
+            hello@inclusivefinance.com
+          </p>
+        </div>
+
+      </div>
+
+      <div class="border-t border-white/10 pt-8 text-center text-gray-500 font-light text-xs tracking-wider">
+        <p>&copy; 2026 INCLUSIVE FINANCE. ALL RIGHTS RESERVED.</p>
+      </div>
+
+    </div>
+  </footer>
+
+</div>

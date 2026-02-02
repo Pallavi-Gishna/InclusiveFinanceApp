@@ -1,0 +1,18 @@
+<div
+  @fadeUp
+  class="chart-card"
+>
+  <div class="header">
+    <h3>Income vs Expenses</h3>
+    <span class="subtitle">Last 6 months</span>
+  </div>
+
+  <div class="chart-wrapper">
+    <canvas
+      baseChart
+      [data]="data"
+      [options]="options"
+      chartType="bar"
+    ></canvas>
+  </div>
+</div>

@@ -1,0 +1,143 @@
+:host {
+  display: block;
+}
+
+/* Shared */
+.sidebar-inner {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.menu-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.collapse-btn {
+  display: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: #9ca3af;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #141414;
+    color: #e5e7eb;
+  }
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+/* Nav */
+.nav {
+  flex: 1;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  color: #9ca3af;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #141414;
+    color: #d1d5db;
+  }
+
+  &.active {
+    background: #1a1a1a;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .icon {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover .icon {
+    transform: scale(1.1);
+  }
+}
+
+/* Desktop */
+.desktop-sidebar {
+  display: none;
+  height: calc(100vh - 73px);
+  background: #0a0a0a;
+  border-right: 1px solid #1a1a1a;
+  padding: 1.5rem 0;
+  transition: width 0.3s ease-in-out;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+/* Mobile */
+.mobile-fab {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 50;
+  border-radius: 9999px;
+  padding: 1rem;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobile-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 50;
+  height: 100%;
+  width: 256px;
+  background: #0a0a0a;
+  border-right: 1px solid #1a1a1a;
+  padding: 1.5rem 0;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}

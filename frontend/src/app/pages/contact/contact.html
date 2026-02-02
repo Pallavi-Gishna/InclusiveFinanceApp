@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+
+<section class="contact-section">
+  <div class="container">
+    <h1 class="headline">Contact Us</h1>
+    <p class="subtitle">
+      Let’s build financial inclusion together. Reach out to our team anytime.
+    </p>
+
+    <div class="contact-grid">
+      <!-- Left Info Block -->
+      <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <p>
+          Whether you’re a user, partner, or investor — we’d love to hear from you.
+          Our team is here to answer questions, discuss collaborations, and help
+          you make the most of InclusiveFinance.
+        </p>
+
+        <ul class="info-list">
+          <li><i class="fa-solid fa-envelope"></i> support@inclusivefinance.app</li>
+          <li><i class="fa-solid fa-phone"></i> +1 (800) 123-4567</li>
+          <li><i class="fa-solid fa-location-dot"></i> 123 Innovation Drive, Tech City</li>
+        </ul>
+
+        <div class="social-links">
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+      </div>
+
+      <!-- Right Contact Form -->
+      <div class="contact-form">
+        <form (submit)="onSubmit($event)">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" placeholder="Your name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" placeholder="Write your message..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+

@@ -1,0 +1,55 @@
+<!-- Mobile Toggle -->
+<button class="mobile-fab" (click)="isMobileOpen = true">
+  <lucide-icon [name]="Menu" size="24"></lucide-icon>
+</button>
+
+<!-- Mobile Overlay -->
+<div
+  *ngIf="isMobileOpen"
+  @fade
+  class="mobile-overlay"
+  (click)="isMobileOpen = false"
+></div>
+
+<!-- Mobile Sidebar -->
+<aside *ngIf="isMobileOpen" @slide class="mobile-sidebar">
+  <ng-container *ngTemplateOutlet="sidebarContent"></ng-container>
+</aside>
+
+<!-- Desktop Sidebar -->
+<aside class="desktop-sidebar" [style.width.px]="isCollapsed ? 80 : 256">
+  <ng-container *ngTemplateOutlet="sidebarContent"></ng-container>
+</aside>
+
+<!-- Shared Content -->
+<ng-template #sidebarContent>
+  <div class="sidebar-inner">
+    <!-- Header -->
+    <div class="header">
+      <span *ngIf="!isCollapsed" class="menu-label">Menu</span>
+
+      <button class="collapse-btn" (click)="toggleCollapse.emit()">
+        <lucide-icon
+          [name]="isCollapsed ? Menu : X"
+          size="20"
+        ></lucide-icon>
+      </button>
+    </div>
+
+    <!-- Nav -->
+    <nav class="nav">
+      <button
+        *ngFor="let item of menuItems"
+        class="nav-item"
+        [class.active]="isActive(item.path)"
+        (click)="navigate(item)"
+      >
+        <lucide-icon [name]="item.icon" size="20" class="icon"></lucide-icon>
+
+        <span *ngIf="!isCollapsed" class="label">
+          {{ item.label }}
+        </span>
+      </button>
+    </nav>
+  </div>
+</ng-template>

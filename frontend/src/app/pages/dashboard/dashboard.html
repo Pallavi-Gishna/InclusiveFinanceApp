@@ -1,0 +1,129 @@
+<div class="dashboard-layout">
+
+  <!-- Sidebar -->
+  <app-sidebar
+  [isCollapsed]="isSidebarCollapsed"
+  (toggleCollapse)="toggleSidebar()"
+></app-sidebar>
+
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    <div class="dashboard-container">
+
+      <!-- Header -->
+      <div class="header flex justify-between items-center mb-8">
+        <div>
+          <h2 class="text-2xl text-white" @fadeUp>Overview</h2>
+          <p class="text-sm text-gray-500" @fadeUp>
+            Track your financial performance
+          </p>
+        </div>
+
+        <!-- Quick Action Buttons -->
+        <div class="flex gap-2">
+          <button class="action-btn" (click)="openModal('income')">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-2 0-2 2-2 2s0 2 2 2 2 2 2 2m0-6v8m0-8H10m2 8h2" />
+            </svg>
+            <span class="hidden md:inline">Update Income</span>
+          </button>
+
+          <button class="action-btn" (click)="openModal('budget')">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 17l6-6 4 4 8-8" />
+            </svg>
+            <span class="hidden md:inline">Set Budget</span>
+          </button>
+
+          <button class="action-btn" (click)="openModal('savings')">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <circle cx="12" cy="12" r="10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="hidden md:inline">Savings Goal</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Top Cards & Charts -->
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <app-balance-card class="lg:col-span-1"></app-balance-card>
+        <app-income-expenses-chart class="lg:col-span-2"></app-income-expenses-chart>
+      </div>
+
+      <!-- Recent Transactions -->
+      <div class="mt-10">
+        <h3 class="section-title">Recent Transactions</h3>
+        <div class="card">
+          <div *ngFor="let tx of recentTransactions" class="transaction-row">
+            <div>
+              <p class="text-white text-sm font-medium">{{ tx.title }}</p>
+              <p class="text-xs text-gray-400">{{ tx.category }} • {{ tx.date }}</p>
+            </div>
+            <div class="amount" [class.positive]="tx.amount>0" [class.negative]="tx.amount<0">
+              {{ tx.amount > 0 ? '+' : '' }}{{ tx.amount }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Insights -->
+      <div class="mt-10">
+        <h3 class="section-title">AI Insights</h3>
+        <div class="grid gap-4 md:grid-cols-3">
+          <div class="card insight" *ngFor="let insight of aiInsights">
+            <h4 class="text-white text-sm font-semibold mb-2">{{ insight.title }}</h4>
+            <p class="text-sm text-gray-400">{{ insight.description }}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal Backdrop -->
+  <div *ngIf="activeModal" class="modal-backdrop" (click)="closeModal()"></div>
+
+  <!-- Modal -->
+  <div *ngIf="activeModal" class="modal" @fadeUp>
+    <h3 class="text-white mb-4">
+      {{ activeModal === 'income' ? 'Update Monthly Income' :
+         activeModal === 'budget' ? 'Set Monthly Budget' :
+         'Set Savings Goal' }}
+    </h3>
+
+    <form (ngSubmit)="handleSubmit()">
+      <!-- Income Modal -->
+      <div *ngIf="activeModal === 'income'">
+        <label class="text-gray-400 mb-1 block">Monthly Income</label>
+        <input type="number" [(ngModel)]="formData.income" name="income" class="modal-input" placeholder="$0.00"/>
+        <p class="text-gray-500 text-xs mt-1">Enter your total monthly income from all sources</p>
+      </div>
+
+      <!-- Budget Modal -->
+      <div *ngIf="activeModal === 'budget'">
+        <label class="text-gray-400 mb-1 block">Monthly Budget Limit</label>
+        <input type="number" [(ngModel)]="formData.budget" name="budget" class="modal-input" placeholder="$0.00"/>
+        <p class="text-gray-500 text-xs mt-1">Set a spending limit to help manage expenses</p>
+      </div>
+
+      <!-- Savings Modal -->
+      <div *ngIf="activeModal === 'savings'">
+        <label class="text-gray-400 mb-1 block">Target Amount</label>
+        <input type="number" [(ngModel)]="formData.savings" name="savings" class="modal-input" placeholder="$0.00"/>
+        <p class="text-gray-500 text-xs mt-1">Define your savings target for this month</p>
+
+        <label class="text-gray-400 mb-1 block mt-3">Target Date</label>
+        <input type="date" [(ngModel)]="formData.savingsDate" name="savingsDate" class="modal-input"/>
+      </div>
+
+      <div class="flex gap-2 mt-4 justify-end">
+        <button type="submit" class="action-btn">Save</button>
+        <button type="button" class="action-btn" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+</div>
